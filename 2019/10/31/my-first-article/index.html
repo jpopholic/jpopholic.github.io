@@ -113,8 +113,6 @@
     </div>
     <div class="tocbot-list-menu">
         <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
     </div>
 </div>
 
@@ -143,7 +141,7 @@
             scrollSmooth: true,
         });
         b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
+        b.innerHTML = "收缩"
     }
 
     function collapse_toc() {
@@ -157,7 +155,7 @@
             scrollSmooth: true,
         });
         b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
+        b.innerHTML = "展开"
     }
 
     function go_top() {
@@ -169,6 +167,7 @@
     }
 
 </script>
+
     
 
     
@@ -213,7 +212,7 @@
                 </span>
             </div>
             <div>
-                <a href="javascript:window.history.back();">back</a>
+                <a href="javascript:window.history.back();">返回</a>
             </div>
         </section>
         <section class="post-nav">
