@@ -864,6 +864,9 @@ h2.article-head {
 .author .share-icons .icon-douban {
   color: #00b51d;
 }
+.author .share-icons .icon-instagram {
+  color: #cd3278;
+}
 .project-app {
   max-width: 1020px;
   min-width: 300px;
