@@ -30,8 +30,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;static.zhaoyh.com.cn&#x2F;1531902620506.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;static.zhaoyh.com.cn&#x2F;haproxy_rabbit.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;jpopholic.github.io&#x2F;images&#x2F;kobe.jpg">
-<meta property="og:updated_time" content="2020-02-24T14:56:45.024Z">
+<meta property="og:updated_time" content="2020-02-24T15:11:42.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;static.zhaoyh.com.cn&#x2F;1531902620506.jpg">
 
@@ -212,7 +211,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-24 21:05:05 / 修改时间：14:56:45" itemprop="dateCreated datePublished" datetime="2020-02-24T21:05:05Z">2020-02-24</time>
+              <time title="创建时间：2020-02-24 21:05:05 / 修改时间：15:11:42" itemprop="dateCreated datePublished" datetime="2020-02-24T21:05:05Z">2020-02-24</time>
             </span>
 
           
@@ -231,47 +230,47 @@
 </blockquote>
 <a id="more"></a>
 
-<h2 id="RabbitMQ集群架构搭建与高可用性实现"><a href="#RabbitMQ集群架构搭建与高可用性实现" class="headerlink" title="RabbitMQ集群架构搭建与高可用性实现"></a>RabbitMQ集群架构搭建与高可用性实现</h2><blockquote>
-<p>当你的RabbitMQ服务器遇到诸如内存崩溃或者断电等极端情况时，单节点是不能应对这些故障的。因此需要多节点集群部署来弹性应对故障。另外可以通过多节点部署，来扩展消息通信的吞吐量。</p>
-</blockquote>
-<h3 id="1-集群搭建"><a href="#1-集群搭建" class="headerlink" title="1. 集群搭建"></a>1. 集群搭建</h3><p>首先，我们不用关心RabbitMQ的集群策略、节点类型等问题，可以先手动把RabbitMQ的集群搭建好，再一步步地了解其原理。</p>
-<h4 id="1-1-准备两个节点"><a href="#1-1-准备两个节点" class="headerlink" title="1.1 准备两个节点"></a>1.1 准备两个节点</h4><p>搭建的详细过程就不再叙述，具体可参考<a href="http://note.youdao.com/noteshare?id=ccf5bf5eb8cea8ada9ba76d51d401be6" target="_blank" rel="noopener">RabbitMQ安装</a>。</p>
-<p>我在两台机器上分别安装了RabbitMQ，在/etc/hostname里也分别配置了机器名：nc060、nc078，要保证两台机器互相能ping通。</p>
-<h4 id="1-2-共享Erlang-Cookie"><a href="#1-2-共享Erlang-Cookie" class="headerlink" title="1.2 共享Erlang Cookie"></a>1.2 共享Erlang Cookie</h4><p>erlang.cookie是erlang实现分布式通信的必要文件，erlang之间的共享通信要求分布式的每个节点上要保持相同的erlang.cookie文件，同时保证文件的权限是400。因此，先把两台RabbitMQ服务关闭，其次，我们把nc060和nc078的erlang.cookie设置成相同，我是把nc060上的erlang.cookie内容复制到nc078机器下。</p>
-<p>如果我们使用解压缩方式安装部署的RabbitMQ，那么这个文件会在$home/.erlang.cookie下。<br>如果我们使用rpm或者yum等安装包方式进行安装的，那么这个文件会在/var/lib/rabbitmq/.erlang.cookie下。</p>
-<p>放心，到了这里很多人会懵，不要怕，我们已经完成了RabbitMQ集群部署的最难的部分了。</p>
-<h4 id="1-3-部署集群"><a href="#1-3-部署集群" class="headerlink" title="1.3 部署集群"></a>1.3 部署集群</h4><p>此时应保证两台装有RabbitMQ的机器具有相同的erlang.cookie内容。</p>
-<p>进入到nc060机器的RabbitMQ的sbin目录：</p>
-<pre><code>1 ./rabbitmqctl join_cluster --ram rabbit@nc078</code></pre><p>—|—</p>
-<p>此时就加入到nc078机器下的集群了，并设置nc060为ram节点，至于什么是ram节点，可参考2.2节的内容。</p>
-<p>分别启动两台机器的RabbitMQ节点：</p>
-<pre><code>1 ./rabbitmqctl start_app</code></pre><p>—|—</p>
+
+<h3 id="1-集群搭建"><a href="#1-集群搭建" class="headerlink" title="1. 集群搭建"></a><a href="#1-集群搭建" title="1. 集群搭建"></a>1. 集群搭建</h3><p>首先，我们不用关心 RabbitMQ 的集群策略、节点类型等问题，可以先手动把 RabbitMQ 的集群搭建好，再一步步地了解其原理。</p>
+<h4 id="1-1-准备两个节点"><a href="#1-1-准备两个节点" class="headerlink" title="1.1 准备两个节点"></a><a href="#1-1-准备两个节点" title="1.1 准备两个节点"></a>1.1 准备两个节点</h4><p>搭建的详细过程就不再叙述，具体可参考 <a href="http://note.youdao.com/noteshare?id=ccf5bf5eb8cea8ada9ba76d51d401be6" target="_blank" rel="noopener">RabbitMQ 安装</a>。</p>
+<p>我在两台机器上分别安装了 RabbitMQ，在 / etc/hostname 里也分别配置了机器名：nc060、nc078，要保证两台机器互相能 ping 通。</p>
+<h4 id="1-2-共享-Erlang-Cookie"><a href="#1-2-共享-Erlang-Cookie" class="headerlink" title="1.2 共享 Erlang Cookie"></a><a href="#1-2-共享Erlang-Cookie" title="1.2 共享Erlang Cookie"></a>1.2 共享 Erlang Cookie</h4><p>erlang.cookie 是 erlang 实现分布式通信的必要文件，erlang 之间的共享通信要求分布式的每个节点上要保持相同的 erlang.cookie 文件，同时保证文件的权限是 400。因此，先把两台 RabbitMQ 服务关闭，其次，我们把 nc060 和 nc078 的 erlang.cookie 设置成相同，我是把 nc060 上的 erlang.cookie 内容复制到 nc078 机器下。</p>
+<p>如果我们使用解压缩方式安装部署的 RabbitMQ，那么这个文件会在 $home/.erlang.cookie 下。<br>如果我们使用 rpm 或者 yum 等安装包方式进行安装的，那么这个文件会在 / var/lib/rabbitmq/.erlang.cookie 下。</p>
+<p>放心，到了这里很多人会懵，不要怕，我们已经完成了 RabbitMQ 集群部署的最难的部分了。</p>
+<h4 id="1-3-部署集群"><a href="#1-3-部署集群" class="headerlink" title="1.3 部署集群"></a><a href="#1-3-部署集群" title="1.3 部署集群"></a>1.3 部署集群</h4><p>此时应保证两台装有 RabbitMQ 的机器具有相同的 erlang.cookie 内容。</p>
+<p>进入到 nc060 机器的 RabbitMQ 的 sbin 目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rabbitmqctl join_cluster --ram rabbit@nc078</span><br></pre></td></tr></table></figure>
+
+<p>此时就加入到 nc078 机器下的集群了，并设置 nc060 为 ram 节点，至于什么是 ram 节点，可参考 2.2 节的内容。</p>
+<p>分别启动两台机器的 RabbitMQ 节点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rabbitmqctl start_app</span><br></pre></td></tr></table></figure>
+
 <p>或者</p>
-<pre><code>1</code></pre><p>|</p>
-<pre><code>./rabbitmq-server -detached</code></pre><p>—|—</p>
-<p>此时去RabbitMQ的web管理页面，会看到已经成功了：</p>
-<p><img src="https://static.zhaoyh.com.cn/1531902620506.jpg" alt="image"></p>
-<h3 id="2-相关说明"><a href="#2-相关说明" class="headerlink" title="2. 相关说明"></a>2. 相关说明</h3><p>接下来会对集群部署策略，和一些关键技术做一些介绍。</p>
-<h4 id="2-1-节点类型"><a href="#2-1-节点类型" class="headerlink" title="2.1 节点类型"></a>2.1 节点类型</h4><ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rabbitmq-server -detached</span><br></pre></td></tr></table></figure>
+
+<p>此时去 RabbitMQ 的 web 管理页面，会看到已经成功了：</p>
+<p><a href="https://static.zhaoyh.com.cn/1531902620506.jpg" target="_blank" rel="noopener"><img src="https://static.zhaoyh.com.cn/1531902620506.jpg" alt></a></p>
+<h3 id="2-相关说明"><a href="#2-相关说明" class="headerlink" title="2. 相关说明"></a><a href="#2-相关说明" title="2. 相关说明"></a>2. 相关说明</h3><p>接下来会对集群部署策略，和一些关键技术做一些介绍。</p>
+<h4 id="2-1-节点类型"><a href="#2-1-节点类型" class="headerlink" title="2.1 节点类型"></a><a href="#2-1-节点类型" title="2.1 节点类型"></a>2.1 节点类型</h4><ul>
 <li>ram（内存）节点：将队列、交换机、绑定等数据存储在内存中，好处是存储和交换机生命之类的操作速度快，坏处是断电后数据会丢失。</li>
-<li>disk（磁盘）节点：将元数据存储在磁盘中，单节点的RabbitMQ只允许磁盘节点，防止重启RabbitMQ的时候，丢失配置信息。</li>
+<li>disk（磁盘）节点：将元数据存储在磁盘中，单节点的 RabbitMQ 只允许磁盘节点，防止重启 RabbitMQ 的时候，丢失配置信息。</li>
 </ul>
 <blockquote>
-<p>RabbitMQ要求在集群中至少有一个磁盘节点，所有其他节点可以是内存节点，当节点加入或者离开集群时，必须要将该变更通知到至少一个磁盘节点。如果集群中唯一的一个磁盘节点崩溃的话，集群可以继续路由消息，但是无法进行其他操作（增删改查队列、交换机、权限等），直到节点恢复。</p>
+<p>RabbitMQ 要求在集群中至少有一个磁盘节点，所有其他节点可以是内存节点，当节点加入或者离开集群时，必须要将该变更通知到至少一个磁盘节点。如果集群中唯一的一个磁盘节点崩溃的话，集群可以继续路由消息，但是无法进行其他操作（增删改查队列、交换机、权限等），直到节点恢复。</p>
 </blockquote>
-<h4 id="2-2-元数据"><a href="#2-2-元数据" class="headerlink" title="2.2 元数据"></a>2.2 元数据</h4><p>RabbitMQ会始终记录以下四种类型的内部元数据：</p>
+<h4 id="2-2-元数据"><a href="#2-2-元数据" class="headerlink" title="2.2 元数据"></a><a href="#2-2-元数据" title="2.2 元数据"></a>2.2 元数据</h4><p>RabbitMQ 会始终记录以下四种类型的内部元数据：</p>
 <ul>
 <li>队列元数据：队列名称及属性（是否持久化、自动删除等）。</li>
 <li>交换机元数据：交换机名称、属性、类型等。</li>
 <li>绑定元数据：将消息路由到队列。</li>
-<li>vhost元数据：命名空间属性。</li>
+<li>vhost 元数据：命名空间属性。</li>
 </ul>
-<h4 id="2-3-集群模式"><a href="#2-3-集群模式" class="headerlink" title="2.3 集群模式"></a>2.3 集群模式</h4><ul>
-<li>普通模式：集群的默认模式，以本次搭建的集群（nc060，nc078）为例，nc060和nc078拥有相同的元数据，即交换机、队列、绑定等基础结构，但是消息实体只存在于一个节点。</li>
-<li>镜像模式：将需要消费的队列变为镜像队列，存在于集群的多个节点，这样就可以实现RabbitMQ的HA高可用性。作用就是消息实体会主动在镜像节点之间实现同步，而不是像普通模式那样，在consumer消费数据时临时读取。缺点就是，集群内部的同步通讯会占用网络带宽。</li>
+<h4 id="2-3-集群模式"><a href="#2-3-集群模式" class="headerlink" title="2.3 集群模式"></a><a href="#2-3-集群模式" title="2.3 集群模式"></a>2.3 集群模式</h4><ul>
+<li>普通模式：集群的默认模式，以本次搭建的集群（nc060，nc078）为例，nc060 和 nc078 拥有相同的元数据，即交换机、队列、绑定等基础结构，但是消息实体只存在于一个节点。</li>
+<li>镜像模式：将需要消费的队列变为镜像队列，存在于集群的多个节点，这样就可以实现 RabbitMQ 的 HA 高可用性。作用就是消息实体会主动在镜像节点之间实现同步，而不是像普通模式那样，在 consumer 消费数据时临时读取。缺点就是，集群内部的同步通讯会占用网络带宽。</li>
 </ul>
-<h3 id="3-高可用性部署策略"><a href="#3-高可用性部署策略" class="headerlink" title="3. 高可用性部署策略"></a>3. 高可用性部署策略</h3><h4 id="3-1-镜像队列"><a href="#3-1-镜像队列" class="headerlink" title="3.1 镜像队列"></a>3.1 镜像队列</h4><p>此部分内容可参考官方文档：<a href="http://www.rabbitmq.com/ha.html" target="_blank" rel="noopener">http://www.rabbitmq.com/ha.html</a></p>
-<p>RabbitMQ镜像队列的模式如下列表：</p>
+<h3 id="3-高可用性部署策略"><a href="#3-高可用性部署策略" class="headerlink" title="3. 高可用性部署策略"></a><a href="#3-高可用性部署策略" title="3. 高可用性部署策略"></a>3. 高可用性部署策略</h3><h4 id="3-1-镜像队列"><a href="#3-1-镜像队列" class="headerlink" title="3.1 镜像队列"></a><a href="#3-1-镜像队列" title="3.1 镜像队列"></a>3.1 镜像队列</h4><p>此部分内容可参考官方文档：<a href="http://www.rabbitmq.com/ha.html" target="_blank" rel="noopener">http://www.rabbitmq.com/ha.html</a></p>
+<p>RabbitMQ 镜像队列的模式如下列表：</p>
 <table>
 <thead>
 <tr>
@@ -283,12 +282,7 @@
 <tbody><tr>
 <td>exactly</td>
 <td>count</td>
-<td></td>
-</tr>
-<tr>
-<td>镜像队列将会在集群上复制count份。如果节点数量少于count，队列会复制到所有节点上。如果节点数量大于count，有一个镜像节点crash后，其余节点也不会作为新的镜像节点。</td>
-<td></td>
-<td></td>
+<td>镜像队列将会在集群上复制 count 份。如果节点数量少于 count，队列会复制到所有节点上。如果节点数量大于 count，有一个镜像节点 crash 后，其余节点也不会作为新的镜像节点。</td>
 </tr>
 <tr>
 <td>all</td>
@@ -298,127 +292,36 @@
 <tr>
 <td>nodes</td>
 <td>node names</td>
-<td>镜像队列会在node name中复制。如果这个node name不属于集群，不会触发错误。</td>
+<td>镜像队列会在 node name 中复制。如果这个 node name 不属于集群，不会触发错误。</td>
 </tr>
 </tbody></table>
 <p>设置镜像队列有两种方式，第一种是在代码里声明队列时设置参数：</p>
-<pre><code>1
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map.put(&quot;x-ha-policy&quot;, &quot;all&quot;);</span><br><span class="line"></span><br><span class="line">channel.queueDeclare(QUEUE_NAME, true, false, false, map);</span><br></pre></td></tr></table></figure>
 
-2</code></pre><p>|</p>
-<pre><code>map.put(&quot;x-ha-policy&quot;, &quot;all&quot;);
-
-channel.queueDeclare(QUEUE_NAME, true, false, false, map);</code></pre><p>—|—</p>
 <p>第二种是直接修改系统配置：</p>
-<pre><code>1</code></pre><p>|</p>
-<pre><code>./rabbitmqctl set_policy ha-all &quot;^&quot; &apos;{&quot;ha-mode&quot;:&quot;all&quot;}&apos;</code></pre><p>—|—</p>
-<h4 id="3-2-RabbitMQ负载均衡部署"><a href="#3-2-RabbitMQ负载均衡部署" class="headerlink" title="3.2 RabbitMQ负载均衡部署"></a>3.2 RabbitMQ负载均衡部署</h4><p>在某台服务器上安装haproxy</p>
-<pre><code>1</code></pre><p>|</p>
-<pre><code>yum install haproxy</code></pre><p>—|—</p>
-<p>打开haproxy的配置文件，/etc/haproxy/haproxy.cfg<br>加入以下配置：</p>
-<pre><code>1
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rabbitmqctl set_policy ha-all &quot;^&quot; &apos;&#123;&quot;ha-mode&quot;:&quot;all&quot;&#125;&apos;</span><br></pre></td></tr></table></figure>
 
-2
+<h4 id="3-2-RabbitMQ-负载均衡部署"><a href="#3-2-RabbitMQ-负载均衡部署" class="headerlink" title="3.2 RabbitMQ 负载均衡部署"></a><a href="#3-2-RabbitMQ负载均衡部署" title="3.2 RabbitMQ负载均衡部署"></a>3.2 RabbitMQ 负载均衡部署</h4><p>在某台服务器上安装 haproxy</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install haproxy</span><br></pre></td></tr></table></figure>
 
-3
+<p>打开 haproxy 的配置文件，/etc/haproxy/haproxy.cfg<br>加入以下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//RabbitMQ链接监听</span><br><span class="line"></span><br><span class="line">listen rabbitmq_local_cluster 部署haproxy的机器IP:5670</span><br><span class="line"></span><br><span class="line">     mode tcp</span><br><span class="line"></span><br><span class="line">     balance roundrobin</span><br><span class="line"></span><br><span class="line">     server rabbit_nc078 nc078:5672 check inter 5000 rise 2 fall 3</span><br><span class="line"></span><br><span class="line">     server rabbit_nc060 nc060:5672 check inter 5000 rise 2 fall 3</span><br><span class="line"></span><br><span class="line">//web管理界面</span><br><span class="line"></span><br><span class="line">listen private_monitoring :8100</span><br><span class="line"></span><br><span class="line">     mode http</span><br><span class="line"></span><br><span class="line">     option httplog</span><br><span class="line"></span><br><span class="line">     stats enable</span><br><span class="line"></span><br><span class="line">     stats uri       /stats</span><br><span class="line"></span><br><span class="line">     stats refresh 10s</span><br><span class="line"></span><br><span class="line">     stats auth    user:pwd</span><br></pre></td></tr></table></figure>
 
-4
+<p>启动 haproxy：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service haproxy start</span><br></pre></td></tr></table></figure>
 
-5
+<p>浏览器打开：haproxy 的机器 IP:8100/stats，查看当前的 RabbitMQ 节点的状态：</p>
+<p><a href="https://static.zhaoyh.com.cn/haproxy_rabbit.jpg" target="_blank" rel="noopener"><img src="https://static.zhaoyh.com.cn/haproxy_rabbit.jpg" alt></a></p>
+<p>现在已经部署好了负载均衡服务，接下来就可以把你的消息生产者和消费者代码中的配置修改下，之前的 RabbitMQ 链接示例为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc060:5672 或者 nc078:5672</span><br></pre></td></tr></table></figure>
 
-6
+<p>因为在 haproxy 中配置的端口为 5670，现在可以统一修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">部署haproxy的机器IP:5670</span><br></pre></td></tr></table></figure>
 
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15</code></pre><p>|</p>
-<pre><code>//RabbitMQ链接监听
-
-listen rabbitmq_local_cluster 部署haproxy的机器IP:5670
-
-     mode tcp
-
-     balance roundrobin
-
-     server rabbit_nc078 nc078:5672 check inter 5000 rise 2 fall 3
-
-     server rabbit_nc060 nc060:5672 check inter 5000 rise 2 fall 3
-
-//web管理界面
-
-listen private_monitoring :8100
-
-     mode http
-
-     option httplog
-
-     stats enable
-
-     stats uri       /stats
-
-     stats refresh 10s
-
-     stats auth    user:pwd</code></pre><p>—|—</p>
-<p>启动haproxy：</p>
-<pre><code>1</code></pre><p>|</p>
-<pre><code>service haproxy start</code></pre><p>—|—</p>
-<p>浏览器打开：haproxy的机器IP:8100/stats，查看当前的RabbitMQ节点的状态：</p>
-<p><img src="https://static.zhaoyh.com.cn/haproxy_rabbit.jpg" alt="image"></p>
-<p>现在已经部署好了负载均衡服务，接下来就可以把你的消息生产者和消费者代码中的配置修改下，之前的RabbitMQ链接示例为：</p>
-<pre><code>1</code></pre><p>|</p>
-<pre><code>nc060:5672 或者 nc078:5672</code></pre><p>—|—</p>
-<p>因为在haproxy中配置的端口为5670，现在可以统一修改为：</p>
-<pre><code>1</code></pre><p>|</p>
-<pre><code>部署haproxy的机器IP:5670</code></pre><p>—|—</p>
-<p>至此已经完成了对RabbitMQ的集群搭建和高可用模式的初步探索，接下来就请你好好享受消息通信带来的便捷吧！</p>
+<p>至此已经完成了对 RabbitMQ 的集群搭建和高可用模式的初步探索，接下来就请你好好享受消息通信带来的便捷吧！</p>
 <blockquote>
-<p>以上内容就是关于RabbitMQ集群架构搭建与高可用性实现的全部内容了，谢谢你阅读到了这里！</p>
-<p>Author：zhaoyh</p>
+<p>以上内容就是关于 RabbitMQ 集群架构搭建与高可用性实现的全部内容了，谢谢你阅读到了这里！</p>
 </blockquote>
-<p><a href="/tags/RabbitMQ/"># RabbitMQ</a> <a href="/tags/负载均衡/"># 负载均衡</a> <a href="/tags/集群/"># 集群</a></p>
-<p><a href="/2018/05/21/基于RabbitMQ实现延迟队列/" title="基于RabbitMQ实现延迟队列"> __基于RabbitMQ实现延迟队列</a></p>
-<p><a href="/2018/07/19/Spring-Cloud之消息总线/" title="Spring Cloud之消息总线"> Spring Cloud之消息总线 __</a></p>
-<ul>
-<li>文章目录</li>
-<li>站点概览</li>
-</ul>
-<p><img src="/images/kobe.jpg" alt="zhaoyh"></p>
-<p>zhaoyh</p>
-<p><a href="/archives/"> 32 日志 </a></p>
-<p><a href="/categories/index.html"> 4 分类 </a></p>
-<p><a href="/tags/index.html"> 42 标签 </a></p>
-<ol>
-<li>1. 集群搭建<ol>
-<li>1.1 准备两个节点</li>
-<li>1.2 共享Erlang Cookie</li>
-<li>1.3 部署集群</li>
-</ol>
-</li>
-<li>2. 相关说明<ol>
-<li>2.1 节点类型</li>
-<li>2.2 元数据</li>
-<li>2.3 集群模式</li>
-</ol>
-</li>
-<li>3. 高可用性部署策略<ol>
-<li>3.1 镜像队列</li>
-<li>3.2 RabbitMQ负载均衡部署</li>
-</ol>
-</li>
-</ol>
-<p>__</p>
 
     </div>
 
@@ -457,7 +360,10 @@ listen private_monitoring :8100
     <a href="/2020/02/21/kafka%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/" rel="prev" title="kafka基本原理浅析">
       <i class="fa fa-chevron-left"></i> kafka基本原理浅析
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/25/RabbitMQ-%E9%95%9C%E5%83%8F%E9%98%9F%E5%88%97%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/" rel="next" title="RabbitMQ-镜像队列原理分析">
+      RabbitMQ-镜像队列原理分析 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -517,7 +423,7 @@ listen private_monitoring :8100
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RabbitMQ集群架构搭建与高可用性实现"><span class="nav-number">1.</span> <span class="nav-text">RabbitMQ集群架构搭建与高可用性实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-集群搭建"><span class="nav-number">1.1.</span> <span class="nav-text">1. 集群搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-准备两个节点"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 准备两个节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-共享Erlang-Cookie"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 共享Erlang Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-部署集群"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 部署集群</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-相关说明"><span class="nav-number">1.2.</span> <span class="nav-text">2. 相关说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-节点类型"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 节点类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-元数据"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 元数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-集群模式"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 集群模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-高可用性部署策略"><span class="nav-number">1.3.</span> <span class="nav-text">3. 高可用性部署策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-镜像队列"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 镜像队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-RabbitMQ负载均衡部署"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 RabbitMQ负载均衡部署</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-集群搭建"><span class="nav-number">1.</span> <span class="nav-text">1. 集群搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-准备两个节点"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 准备两个节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-共享-Erlang-Cookie"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 共享 Erlang Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-部署集群"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 部署集群</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-相关说明"><span class="nav-number">2.</span> <span class="nav-text">2. 相关说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-节点类型"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 节点类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-元数据"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 元数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-集群模式"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 集群模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-高可用性部署策略"><span class="nav-number">3.</span> <span class="nav-text">3. 高可用性部署策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-镜像队列"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 镜像队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-RabbitMQ-负载均衡部署"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 RabbitMQ 负载均衡部署</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -531,7 +437,7 @@ listen private_monitoring :8100
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
