@@ -19,12 +19,10 @@
 <p>放心，到了这里很多人会懵，不要怕，我们已经完成了RabbitMQ集群部署的最难的部分了。</p>
 <h4 id="1-3-部署集群"><a href="#1-3-部署集群" class="headerlink" title="1.3 部署集群"></a>1.3 部署集群</h4><p>此时应保证两台装有RabbitMQ的机器具有相同的erlang.cookie内容。</p>
 <p>进入到nc060机器的RabbitMQ的sbin目录：</p>
-<pre><code>1</code></pre><p>|</p>
-<pre><code>./rabbitmqctl join_cluster --ram rabbit@nc078</code></pre><p>—|—</p>
+<pre><code>1 ./rabbitmqctl join_cluster --ram rabbit@nc078</code></pre><p>—|—</p>
 <p>此时就加入到nc078机器下的集群了，并设置nc060为ram节点，至于什么是ram节点，可参考2.2节的内容。</p>
 <p>分别启动两台机器的RabbitMQ节点：</p>
-<pre><code>1</code></pre><p>|</p>
-<pre><code>./rabbitmqctl start_app</code></pre><p>—|—</p>
+<pre><code>1 ./rabbitmqctl start_app</code></pre><p>—|—</p>
 <p>或者</p>
 <pre><code>1</code></pre><p>|</p>
 <pre><code>./rabbitmq-server -detached</code></pre><p>—|—</p>
