@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-CN">
   <head>
     
 <meta charset="UTF-8"/>
@@ -21,10 +21,12 @@
 
 
 
-    <link rel="alternate" href="/default" title="Greg's blog">
+  <link rel="alternate" href="/default" title="Greg's blog">
 
 
 
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
 
 
 
@@ -42,7 +44,7 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1"/>
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
 <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
 
 
@@ -60,36 +62,11 @@
 
 
 
-    
+  
 
 
 
-
-
-    
-
-
-
-    <link rel="stylesheet" type="text/css" href="/css/search.css?v=1.1"/>
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var CONFIG = {
-    root: '/',
-    algolia: {
-          applicationID: 'HQ4AQTAB6W',
-          apiKey: '6f6fb4cf6b1d3ae53ce1df317540add9`',
-          indexName: 'greg.blog',
-          hits: {"per_page":10},
-          labels: {"input_placeholder":"搜索……","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
-        }
-  };
-</script>
-
-    <title>
-  Greg's blog
-</title>
+    <title> Greg's blog - blog</title>
   </head>
 
   <body>
@@ -104,6 +81,15 @@
             <ul id="menu-top" class="nav-top-items">
                 
                     <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
                         <a href="/about">
                             
                             
@@ -112,107 +98,172 @@
                         </a>
                     </li>
                 
-                
-                    <li class="menu-item">
-                        <a id="search" href="">Search</a>
-                    </li>
-                
             </ul>
         
-    </nav>
-
+  </nav>
 </div>
 
       </header>
       <div id="content">
         
-  
-<div id="primary">
-  <section id="archive" class="archive">
-
-    
-
-      
-      
-
-      
+    <div id="primary" class="home">
         
-        <div class="collection-title">
-          <h2 class="archive-year">2020</h2>
+            
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2020/02/25/RabbitMQ-%E9%95%9C%E5%83%8F%E9%98%9F%E5%88%97%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">RabbitMQ-镜像队列原理分析</a>
+        
+      </h1>
+
+      <time class="post-time">
+          2月 24 2020
+      </time>
+    </header>
+
+
+
+    
+        <div class="post-excerpt post-content">
+            
+            
+              
+            
+
+            
+              <blockquote>
+<p>对于 RabbitMQ 的节点来说，有单节点模式和集群模式两种，其中集群模式又分为普通集群模式和镜像队列集群模式，在<a href="http://zhaoyh.com.cn/2018/06/19/RabbitMQ%E9%9B%86%E7%BE%A4%E6%9E%B6%E6%9E%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%E5%AE%9E%E7%8E%B0/" target="_blank" rel="noopener">《RabbitMQ 集群架构搭建与高可用性实现》</a>文中，介绍了 RabbitMQ 的集群创建步骤方法。而镜像队列集群模式的搭建步骤和普通集群模式是基本相同的，唯一不同的是，镜像队列集群模式，多了一步配置 policy 的步骤。本文主要介绍镜像队列的原理及实现。</p>
+</blockquote>
         </div>
-      
+            
+          
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          2月 24
-        </span>
-        <span class="archive-post-title">
-          <a href="/2020/02/25/RabbitMQ-%E9%95%9C%E5%83%8F%E9%98%9F%E5%88%97%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/" class="archive-post-link">
-            RabbitMQ-镜像队列原理分析
-          </a>
-        </span>
-      </div>
     
+  </article>
 
-      
-      
+        
+            
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2020/02/25/RabbitMQ-%E9%9B%86%E7%BE%A4%E6%9E%B6%E6%9E%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%E5%AE%9E%E7%8E%B0/">RabbitMQ 集群架构搭建与高可用性实现</a>
+        
+      </h1>
 
-      
+      <time class="post-time">
+          2月 24 2020
+      </time>
+    </header>
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          2月 24
-        </span>
-        <span class="archive-post-title">
-          <a href="/2020/02/25/RabbitMQ-%E9%9B%86%E7%BE%A4%E6%9E%B6%E6%9E%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%E5%AE%9E%E7%8E%B0/" class="archive-post-link">
-            RabbitMQ 集群架构搭建与高可用性实现
-          </a>
-        </span>
-      </div>
+
+
     
+        <div class="post-excerpt post-content">
+            
+            
+              
+            
 
-      
-      
+            
+              <blockquote>
+<p>当你的 RabbitMQ 服务器遇到诸如内存崩溃或者断电等极端情况时，单节点是不能应对这些故障的。因此需要多节点集群部署来弹性应对故障。另外可以通过多节点部署，来扩展消息通信的吞吐量。</p>
+</blockquote>
+        </div>
+            
+          
 
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          2月 21
-        </span>
-        <span class="archive-post-title">
-          <a href="/2020/02/21/kafka%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/" class="archive-post-link">
-            kafka基本原理浅析
-          </a>
-        </span>
-      </div>
     
+  </article>
 
-      
-      
+        
+            
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2020/02/21/kafka%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/">kafka基本原理浅析</a>
+        
+      </h1>
 
-      
+      <time class="post-time">
+          2月 21 2020
+      </time>
+    </header>
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          1月 20
-        </span>
-        <span class="archive-post-title">
-          <a href="/2020/01/21/Kafka%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/" class="archive-post-link">
-            Kafka分区分配策略分析
-          </a>
-        </span>
-      </div>
+
+
     
-  </section>
- </div>
+        <div class="post-excerpt post-content">
+            
+            
+              
+            
 
-  
+            
+              <p>基于 Kafka-ZooKeeper 的分布式消息队列系统总体架构如下：</p>
+        </div>
+            
+          
+
+    
+  </article>
+
+        
+            
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2020/01/21/Kafka%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/">Kafka分区分配策略分析</a>
+        
+      </h1>
+
+      <time class="post-time">
+          1月 20 2020
+      </time>
+    </header>
+
+
+
+    
+        <div class="post-excerpt post-content">
+            
+            
+              
+            
+
+            
+              <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在Kafka中，每个Topic会包含多个分区，默认情况下一个分区只能被一个消费组下面的一个消费者消费，这里就产生了分区分配的问题。Kafka中提供了多重分区分配算法（PartitionAssignor）的实现：RangeAssigor、RoundRobinAssignor、StickyAssignor。本文主要介绍StickyAssignor，顺带会介绍RangeAssigor、RoundRobinAssignor作为分区分配的背景知识。</p>
+        </div>
+            
+          
+
+    
+  </article>
+
+        
+        
   <nav class="pagination">
     
     
   </nav>
 
+    </div>
+    <div id="secondary">
+    
+
+    
+
+    
+    <section id="tags" class="widget-area widget_tags">
+        <h3 class="widget-title">Tags</h3>
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitmq/" rel="tag">rabbitmq</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a><span class="tag-list-count">2</span></li></ul>
+    </section>
+
+
+</div>
 
 
       </div>
@@ -221,12 +272,12 @@
     
         &copy;
     
-        2012 -
+        2014 -
     
     2020
     <span class="footer-author">Greg Wang.</span>
     <span class="power-by">
-        Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> and <a class="theme-link" href="https://github.com/henryhuang/hexo-theme-polarbearsimple" target="_blank" rel="noopener">Polar Bear Simple</a>
+        Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" target="_blank" rel="noopener">Polar Bear</a>
     </span>
 </span>
 
@@ -236,40 +287,6 @@
         <i class="iconfont icon-up"></i>
       </div>
     </div>
-    
-    <div id="search-container" class="search-container">
-        <input type="hidden" id="algolia_index" value="greg.blog"/>
-        <input type="hidden" id="algolia_app_id" value="HQ4AQTAB6W"/>
-        <input type="hidden" id="algolia_token" value="6f6fb4cf6b1d3ae53ce1df317540add9"/>
-        <div class="section">
-            <div class="container">
-
-                <div class="panel">
-                    <div class="panel-heading">
-                        Search
-                        <a id="close" href="" style="float: right; color: #363636;">
-                            <i class="fas fa-times-circle" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                    <div class="panel-block">
-                        <div id="searchContainer" class="control has-icons-left">
-                            <input id="searchField" class="input" type="text" placeholder="Enter anything...">
-                            <span class="icon is-small is-left">
-            <i class="fas fa-search" aria-hidden="true"></i>
-          </span>
-                        </div>
-                    </div>
-                    <div id="result">
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-
     
 
 
@@ -287,48 +304,5 @@
     <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
 <script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
 
-    
-    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script type="text/javascript" src="/js/src/search.js"></script>
-
-
-  
-  <script type="application/ld+json">
-  {
-  "@context": "http://www.schema.org",
-  "@type": "Person",
-  "@id": "https://huangyijie.com/about/",
-  "name": "黄奕杰",
-  "alternateName": "Henry Huang",
-  "nationality": "中国",
-  "birthPlace" : {
-    "@type": "Place",
-      "address": {
-        "@type": "PostalAddress",
-      "addressLocality": "汕头市",
-      "addressRegion": "广东省",
-          "addressCountry": "中国"
-    }
-  },
-  "gender": "Male",
-  "Description": "Software Engineer",
-  "disambiguatingDescription": "Full stack software engineer, focus on Java and JavaScript.",
-  "jobTitle": "Software Engineer",
-  "url": "https://huangyijie.com",
-  "image": "https://s.gravatar.com/avatar/4e0e61fdf1b2bcfb4ee31da27601fe6b?s=512&r=g",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "深圳市",
-    "addressRegion": "广东省",
-    "addressCountry": "中国"
-  },
-  "sameAs": [
-    "http://weibo.com/626242034",
-    "https://github.com/henryhuang",
-    "https://unsplash.com/@henryhh"
-    ]
-  }
-  </script>
   </body>
 </html>
