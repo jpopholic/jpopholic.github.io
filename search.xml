@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>gregblog</title>
-    <url>/2020/02/24/gregblog/</url>
-    <content><![CDATA[<h2 id="gregtest"><a href="#gregtest" class="headerlink" title="gregtest"></a>gregtest</h2>]]></content>
-      <tags>
-        <tag>test</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/2020/02/23/test/</url>
-    <content><![CDATA[<p>asdfasdfasdf</p>
-]]></content>
-  </entry>
-  <entry>
     <title>kafka基本原理浅析</title>
     <url>/2020/02/21/kafka%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</url>
     <content><![CDATA[<p>消息队列中间件是分布式系统中重要的组件，主要解决应用耦合，异步消息，流量削锋等问题。实现高性能，高可用，可伸缩和最终一致性架构，是大型分布式系统不可缺少的中间件。</p>
