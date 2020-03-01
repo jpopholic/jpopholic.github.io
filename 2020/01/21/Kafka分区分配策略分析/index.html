@@ -21,7 +21,7 @@
   </script>
 
   <meta name="description" content="背景在Kafka中，每个Topic会包含多个分区，默认情况下一个分区只能被一个消费组下面的一个消费者消费，这里就产生了分区分配的问题。Kafka中提供了多重分区分配算法（PartitionAssignor）的实现：RangeAssigor、RoundRobinAssignor、StickyAssignor。本文主要介绍StickyAssignor，顺带会介绍RangeAssigor、RoundRo">
-<meta name="keywords" content="Kafka">
+<meta name="keywords" content="kafka">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kafka分区分配策略分析">
 <meta property="og:url" content="https:&#x2F;&#x2F;jpopholic.github.io&#x2F;2020&#x2F;01&#x2F;21&#x2F;Kafka%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90&#x2F;index.html">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;jpopholic.github.io&#x2F;2020&#x2F;01&#x2F;21&#x2F;Kafka%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90&#x2F;StickyAssignor2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;jpopholic.github.io&#x2F;2020&#x2F;01&#x2F;21&#x2F;Kafka%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90&#x2F;StickyAssignor3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;jpopholic.github.io&#x2F;2020&#x2F;01&#x2F;21&#x2F;Kafka%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90&#x2F;StickyAssignor4.png">
-<meta property="og:updated_time" content="2020-02-24T11:48:13.770Z">
+<meta property="og:updated_time" content="2020-03-01T09:09:17.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;jpopholic.github.io&#x2F;2020&#x2F;01&#x2F;21&#x2F;Kafka%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90&#x2F;RangeAssignor1.png">
 
@@ -213,7 +213,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-24 11:48:13" itemprop="dateModified" datetime="2020-02-24T11:48:13Z">2020-02-24</time>
+                <time title="修改时间：2020-03-01 09:09:17" itemprop="dateModified" datetime="2020-03-01T09:09:17Z">2020-03-01</time>
               </span>
 
           
@@ -297,7 +297,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Kafka/" rel="tag"># Kafka</a>
+              <a href="/tags/kafka/" rel="tag"># kafka</a>
           </div>
 
         
@@ -383,7 +383,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
